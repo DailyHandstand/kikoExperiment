@@ -7,7 +7,8 @@
 <script>
     var bootstrap = function() {
         
-        $.get("http://catalog.lv3.hbogo.com/apps/mediacatalog/rest/landingService/HBO/landing/DO", function(data) {
+        // $.get("http://catalog.lv3.hbogo.com/apps/mediacatalog/rest/landingService/HBO/landing/DO", function(data) {
+        $.get("http://localhost:8080/data", function(data) {
               
               var sections = $(data).find("sectionContentResponses");
               $(sections).each( function(index) {
