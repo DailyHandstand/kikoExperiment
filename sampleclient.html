@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kiko Icon Experiment</title>
+    <script type="text/javascript" src="./jquery.js"></script>
+</head>
+<script>
+    var bootstrap = function() {
+        
+        $.get("http://catalog.lv3.hbogo.com/apps/mediacatalog/rest/landingService/HBO/landing/DO", function(data) {
+              
+              var sections = $(data).find("sectionContentResponses");
+              $(sections).each( function(index) {
+                               var titleText = ($(this).find("title"))[0].textContent;
+                
+                               var images = $(this).find("resourceUrl");
+                               $(images).each( function(index) {
+                                              var imageUrl = $(images)[index].textContent;
+                                              if ( ( imageUrl.indexOf("default") <= 0 ) && ( imageUrl.indexOf("754x424") >= 0 ) ) {
+                                                $('body').append("<img src=" + imageUrl + " title= \"" + titleText + "\"\/>");
+                                              };
+                                              });
+                               
+
+                });
+              
+              });
+    }
+</script>
+<body onload="bootstrap()">
+    <h1>Kiko body</h1>
+    <div id="codestore" style = "display:none">
+        
+<!--
+        $.get("affiliateInfoResponse.xml", function(data) {
+        $('body').append(data);
+        });
+        alert ("Done loading 1");
+        
+        $.get("http://profile.lv3.hbogo.com/apps/profile/rest/affiliates?serviceCode=HBO&deviceCode=DESKTOP", function(data) {
+        
+        $('body').append((new XMLSerializer()).serializeToString(data));
+
+        var title = $(data).find("resourceUrl");
+        var firstTitle = $(title)[0];
+        alert ("firstTitle: " + firstTitle.textContent);
+        $(title).each( function(index) {
+        $("#affiliateLogo").attr("src", $(title)[index].textContent);
+        var imageUrl = $(title)[index].textContent;
+        if ( ( imageUrl.indexOf("default") <= 0 ) && ( imageUrl.indexOf("754x424") >= 0 ) ) {
+            $('body').append("<img src=" + $(title)[index].textContent + ">");
+                }
+                });
+
+-->
+
+    </div>
+    <div id="dialogue"></div>
+
+
+    <img id="affiliateLogo" src="http://www.hbogo.com/mobile/affiliate_logos/affiliate_list/bhn-desktop.png" title="Hi There"/>
+
+</body>
+</html>
