@@ -6,10 +6,13 @@
 </head>
 <script>
     var bootstrap = function() {
-        
+
+        // Get the image and title data from HBO GO Core API
         // $.get("http://catalog.lv3.hbogo.com/apps/mediacatalog/rest/landingService/HBO/landing/DO", function(data) {
-        $.get("http://localhost:8080/data", function(data) {
-              
+        $.get("http://localhost:1337/data", function(data) {
+
+              var titleImageText = [];
+              var arrayIndex = 0;            
               var sections = $(data).find("sectionContentResponses");
               $(sections).each( function(index) {
                                var titleText = ($(this).find("title"))[0].textContent;
@@ -18,13 +21,24 @@
                                $(images).each( function(index) {
                                               var imageUrl = $(images)[index].textContent;
                                               if ( ( imageUrl.indexOf("default") <= 0 ) && ( imageUrl.indexOf("754x424") >= 0 ) ) {
-                                                $('body').append("<img src=" + imageUrl + " title= \"" + titleText + "\"\/>");
+                                                titleImageText[arrayIndex] = [];
+                                                titleImageText[arrayIndex][0] = titleText;
+                                                titleImageText[arrayIndex][1] = imageUrl;
+                                                arrayIndex++;
+//                                                $('body').append("<img src=" + imageUrl + " title= \"" + titleText + "\"\/>");
                                               };
                                               });
                                
 
                 });
-              
+
+              alert(titleImageText);
+              alert(JSON.stringify(titleImageText));
+              // Loop through the created list of titleImageText and put in the HTML
+              for (var i = 0; i < arrayIndex; i++) {
+                  $('body').append("<img src=" + titleImageText[i][1] + " title= \"" + titleImageText[i][0] + "\"\/>");
+                };
+
               });
     }
 </script>

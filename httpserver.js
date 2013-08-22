@@ -12,7 +12,7 @@ vertx.createHttpServer().requestHandler(function(req) {
 
   console.log("responding to static content request: " + req.path());
 
-  var webRoot = '/Users/ifollend/tddTraining/tddjs/source/KikoExperiment3/';
+  var webRoot = '/Users/ifollend/tddTraining/tddjs/source/kikoExperiment/';
 
   if (req.path().indexOf('/data') < 0) {
     // Send the file back based on webRoot and the path requested
@@ -34,9 +34,9 @@ vertx.createHttpServer().requestHandler(function(req) {
     });
   }
 
-}).listen(8080, "localhost", function(err) { // Add a callback to confirm the server is listenting
+}).listen(1337, function(err) { // Add a callback to confirm the server is listenting
     if (!err) {
-        console.log("Listen succeeded! on 8080");
+        console.log("Listen succeeded! on 1337");
     }
   }
 );
